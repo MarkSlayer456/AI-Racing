@@ -20,7 +20,7 @@ public class Brain {
 	 *  and that's for each move
 	 */
 	
-	public static final int BRAIN_SIZE = 3500;
+	public static final int BRAIN_SIZE = 2500;
 	public static int top_size;
 	
 	public static final int TOTAL_SCORE = 100;

@@ -26,26 +26,32 @@ public class Car {
 //	private CheckPoint current; // current checkpoint
 //	private FinishLine finish; // what it's trying to accomplish in the long run
 	private boolean reachedFinish;
+	private boolean isPlayer;
 	
-	
-	public Car() {
+	public Car(boolean isPlayer) {
 		this.state = new PVector();
 		this.x = 50;
 		this.y = 75;
 		this.alive = true;
-		this.brain = new Brain(Brain.BRAIN_SIZE);
-		this.currentGoal = 0;
-		this.runs = 0;
 		this.setHeight(25);
-		this.setWidth(25);		
-		this.goals = new ArrayList<CheckPoint>();
+		this.setWidth(25);	
 		this.reachedFinish = false;
+		if(isPlayer) {
+			this.brain = null;
+		} else {
+			this.brain = new Brain(Brain.BRAIN_SIZE);
+			this.currentGoal = 0;
+			this.runs = 0;
+			this.goals = new ArrayList<CheckPoint>();
+		}
+		
 		//TODO checkpoints and finish line
 	}
 	
 	public void move() {
 		if(this.alive) {
 			if(this.stepsTaken >= this.getBrain().getSize()) {
+				this.stepsTaken--;
 				this.killCar();
 				System.out.println("death to steps!");
 			} else {
@@ -102,7 +108,7 @@ public class Car {
 				top.setFitness(this.getFitness());
 			}
 		} else {
-			top = new Car();
+			top = new Car(false);
 			top.setBrain(this.getBrain().clone());
 			top.setFitness(this.getFitness());
 		}

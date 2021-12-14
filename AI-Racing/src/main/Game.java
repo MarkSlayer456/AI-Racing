@@ -5,10 +5,12 @@ import java.awt.Dimension;
 import main.ai.Brain;
 import main.ai.Population;
 import main.managers.FrameRateManager;
+import main.managers.InputManager;
 import main.managers.UIManager;
 import main.objects.Car;
 import main.objects.CheckPoint;
 import main.objects.FinishLine;
+import main.objects.Player;
 import main.objects.Wall;
 import main.utils.TrackReader;
 
@@ -17,7 +19,8 @@ public class Game implements Runnable {
 	public static final double GRAPHICS_FRAME_RATE = 16.66667; // 60 fps
 	public static final double LOGIC_FRAME_RATE = 16.66667; // 60 fps
 	public static final int POP_SIZE = 5000;
-	
+	public InputManager inputManager = new InputManager();
+	public Player player = new Player(new Car(true), inputManager);
 	
 	public static Game graphics = new Game(new UIManager(new Dimension(800, 600)), new FrameRateManager(GRAPHICS_FRAME_RATE));
 	public static Game logic = new Game(null, new FrameRateManager(LOGIC_FRAME_RATE));

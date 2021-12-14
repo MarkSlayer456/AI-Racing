@@ -15,7 +15,7 @@ public class Population {
 		this.size = size;
 		cars = new Car[size];
 		for(int i = 0; i < size; i++) {
-			cars[i] = new Car();
+			cars[i] = new Car(false);
 			for(int j = 0; j < points.length; j++) {
 				cars[i].addGoal(points[j]);
 			}
